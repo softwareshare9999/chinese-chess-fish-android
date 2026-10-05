@@ -1,0 +1,64 @@
+name: Release-Vietnamese-APKs
+
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-apks-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v4
+        with:
+          # versionCode is the commit count, so the full history is required.
+          fetch-depth: 0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: temurin
+          cache: gradle
+
+      - name: Build armv8 and armv8-dotprod release APKs
+        run: ./gradlew assembleArmv8-Release assembleArmv8-dotprod-Release --stacktrace
+
+      - name: Collect APKs
+        id: collect
+        run: |
+          mkdir -p release-assets
+          cp app/build/outputs/apk/armv8-/release/*.apk release-assets/
+          cp app/build/outputs/apk/armv8-dotprod-/release/*.apk release-assets/
+          ls -la release-assets
+          echo "revision=$(git rev-list HEAD --count)" >> "$GITHUB_OUTPUT"
+
+      - name: Create release and upload APKs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: vi-${{ steps.collect.outputs.revision }}
+          REVISION: ${{ steps.collect.outputs.revision }}
+        run: |
+          if ! gh release view "$TAG" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release create "$TAG" \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$GITHUB_SHA" \
+              --title "ChessFish (Tiếng Việt) ${REVISION}" \
+              --notes "Bản dịch tiếng Việt. Build từ commit ${GITHUB_SHA}.
+
+          - \`*_armv8-Release.apk\`: dùng cho mọi điện thoại ARM 64-bit.
+          - \`*_armv8-dotprod-Release.apk\`: engine nhanh hơn, cần chip ARMv8.2 dot product (khoảng Snapdragon 845 / Exynos 9820 trở lên)."
+          fi
+          gh release upload "$TAG" release-assets/*.apk \
+            --repo "$GITHUB_REPOSITORY" --clobber
