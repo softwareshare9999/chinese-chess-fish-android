@@ -5,6 +5,8 @@ import android.util.Log;
 import com.igormaznitsa.jbbp.JBBPParser;
 import com.igormaznitsa.jbbp.model.JBBPFieldArrayByte;
 import com.igormaznitsa.jbbp.model.JBBPFieldStruct;
+import com.zfdang.chess.ChessApp;
+import com.zfdang.chess.R;
 import com.zfdang.chess.gamelogic.Move;
 import com.zfdang.chess.gamelogic.Piece;
 import com.zfdang.chess.gamelogic.Position;
@@ -342,13 +344,13 @@ public class XQFParser {
         // 0033             棋局的结果: 0x00-未知,0x01-红胜,0x02-黑胜,0x03-和棋
         switch (result) {
             case 0x01:
-                return "红胜";
+                return localized(R.string.result_red_win, "红胜");
             case 0x02:
-                return "黑胜";
+                return localized(R.string.result_black_win, "黑胜");
             case 0x03:
-                return "平局";
+                return localized(R.string.result_draw, "平局");
             default:
-                return "未知";
+                return localized(R.string.result_unknown, "未知");
         }
     }
 
@@ -356,15 +358,23 @@ public class XQFParser {
         //     0040             棋局的类型: 0x00-全局文件, 0x01-布局文件,
         //                                 0x02-中局文件, 0x03-残局文件
         if (b == 0x00) {
-            return "全局";
+            return localized(R.string.category_full, "全局");
         } else if (b == 0x01) {
-            return "布局";
+            return localized(R.string.category_opening, "布局");
         } else if (b == 0x02) {
-            return "中局";
+            return localized(R.string.category_middlegame, "中局");
         } else if (b == 0x03) {
-            return "残局";
+            return localized(R.string.category_endgame, "残局");
         }
         return null;
+    }
+
+    private static String localized(int resId, String fallback) {
+        try {
+            if (ChessApp.getContext() != null) return ChessApp.str(resId);
+        } catch (RuntimeException ignored) {
+        }
+        return fallback;
     }
 
     private static Position getPosFromValue(int value) {

@@ -36,7 +36,11 @@ class InformationActivity : AppCompatActivity() {
             expandedSections[it.removePrefix("section:")] = savedInstanceState.getBoolean(it)
         }
         val page = intent.getStringExtra(EXTRA_PAGE) ?: HELP
-        val title = when (page) { ABOUT -> "关于象棋鱼"; PRIVACY -> "隐私政策"; else -> "使用帮助" }
+        val title = when (page) {
+            ABOUT -> getString(R.string.info_about_title)
+            PRIVACY -> getString(R.string.info_privacy_title)
+            else -> getString(R.string.info_help_title)
+        }
         findViewById<TextView>(R.id.information_title).text = title
         when (page) { ABOUT -> about(); PRIVACY -> privacy(); else -> help() }
     }
@@ -104,7 +108,7 @@ class InformationActivity : AppCompatActivity() {
             fun expanded(open: Boolean) {
                 paragraph.visibility = if (open) View.VISIBLE else View.GONE
                 indicator.text = if (open) "−" else "+"
-                ViewCompat.setStateDescription(header, if (open) "已展开" else "已折叠")
+                ViewCompat.setStateDescription(header, getString(if (open) R.string.info_expanded else R.string.info_collapsed))
                 expandedSections[key] = open
             }
             expanded(expandedSections[key] ?: initiallyOpen)
@@ -130,52 +134,54 @@ class InformationActivity : AppCompatActivity() {
             layoutParams = LinearLayout.LayoutParams(-1, -2).apply { bottomMargin = dp(8) }
             setOnClickListener {
                 try { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri))) }
-                catch (_: ActivityNotFoundException) { Toast.makeText(context, "未找到可打开链接的应用", Toast.LENGTH_SHORT).show() }
+                catch (_: ActivityNotFoundException) { Toast.makeText(context, R.string.info_no_browser, Toast.LENGTH_SHORT).show() }
             }
         })
     }
     private fun help() {
-        heading("从第一步开始", "点开一个主题，了解下棋、分析和打谱的方法。")
+        heading(getString(R.string.help_heading), getString(R.string.help_heading_sub))
         val sections = listOf(
-            "开始一盘棋" to "进入「对弈」，点击棋子，再点击目标位置落子。可走位置会在棋盘上标出。\n\n「新局」重新开始，「悔棋」回到上一步。右上角「对弈设置」可调整先行方、电脑走棋和搜索方式。",
-            "提示与候选着法" to "轮到红方时点击「提示」，引擎会给出候选着法，并在棋盘上画出箭头。点击候选按钮选择着法，也可以直接在棋盘上走自己的棋。\n\n想换一个电脑着法，可展开「引擎与棋局工具」，选择「变着」。",
-            "搜索与闪电出着" to "固定深度：达到指定深度后出着，深度越高通常耗时越长。\n\n固定时间：在设定时间内搜索，适合控制每步等待时间。\n\n无限搜索：持续分析，需点击工具区的「闪电出着」结束搜索并取得结果。搜索太慢时，可降低深度或缩短时间。",
-            "FEN 局面与评估" to "展开「引擎与棋局工具」，可从 FEN 字符串开局，也可导出当前局面的 FEN，用于分享、复盘或反馈问题。\n\n「评估」分析当前局面，「走势」查看已有评估记录。未评估的局面不会显示为零分。",
-            "打开棋谱" to "进入「打谱」，点击打开按钮选择内置 XQF 棋谱。用前进、后退浏览着法；遇到多个分支时，可选择要查看的分支。\n\n点击对弈按钮，可从当前棋谱局面开始对弈。返回后仍可继续浏览棋谱。",
-            "引擎设置与版本选择" to "Hash 是引擎搜索缓存。应根据手机内存设置，过大的缓存可能让系统终止引擎。\n\n开启随机走棋后，电脑会在开局阶段从候选着法中选择，使对局有所变化，但可能降低棋力。先行方设置在新局中生效。\n\nARMv8 版本适用于支持的 ARM64 手机；dotprod 版本要求 CPU 支持点积指令。不确定时选择普通 ARMv8 版本。",
-            "反馈问题" to "请附上复现步骤、手机型号、应用版本；棋局相关问题还可附上导出的 FEN。下方链接可在浏览器中打开项目的问题反馈页。"
+            getString(R.string.help_play_title) to getString(R.string.help_play_body),
+            getString(R.string.help_hint_title) to getString(R.string.help_hint_body),
+            getString(R.string.help_search_title) to getString(R.string.help_search_body),
+            getString(R.string.help_fen_title) to getString(R.string.help_fen_body),
+            getString(R.string.help_manual_title) to getString(R.string.help_manual_body),
+            getString(R.string.help_engine_title) to getString(R.string.help_engine_body),
+            getString(R.string.help_feedback_title) to getString(R.string.help_feedback_body)
         )
         sections.forEachIndexed { index, (title, body) -> card(title, body, "help-$index", true, index == 0) }
-        link("反馈问题", "$PROJECT/issues")
+        link(getString(R.string.link_feedback), "$PROJECT/issues")
     }
     private fun about() {
-        heading("象棋鱼", "CHESS FISH\n开源免费的中国象棋学习工具")
-        card("一局棋，慢慢来。", "与皮卡鱼引擎过招，查看候选着法与局势评估，或打开一份棋谱重温好棋。", "intro")
-        card("版本信息", "应用版本  ${BuildConfig.VERSION_NAME} · ${BuildConfig.VERSION_CODE}\n皮卡鱼引擎与 NNUE  ${EngineAssets.VERSION}", "version")
-        card("开源与致谢", "由 zfdang 维护。\n\n象棋引擎来自 Pikafish；引擎通信代码基于 DroidFish。感谢开源项目与贡献者。源代码及相关许可可在项目仓库中查看。", "credits")
-        link("项目主页", "https://fish.zfdang.com/")
-        link("源代码与许可", PROJECT)
-        link("版本更新", "$PROJECT/releases")
+        heading(getString(R.string.about_heading), getString(R.string.about_heading_sub))
+        card(getString(R.string.about_intro_title), getString(R.string.about_intro_body), "intro")
+        card(getString(R.string.about_version_title), getString(R.string.about_version_body, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE, EngineAssets.VERSION), "version")
+        card(getString(R.string.about_credits_title), getString(R.string.about_credits_body), "credits")
+        link(getString(R.string.link_homepage), "https://fish.zfdang.com/")
+        link(getString(R.string.link_source), PROJECT)
+        link(getString(R.string.link_releases), "$PROJECT/releases")
     }
     private fun privacy() {
         // The same document is published on the website and bundled by the build for offline use.
+        val assetName = privacyAssetName()
         val html = try {
-            assets.open("documents/privacy.html").bufferedReader(Charsets.UTF_8).use { it.readText() }
+            assets.open(assetName).bufferedReader(Charsets.UTF_8).use { it.readText() }
         } catch (error: IOException) {
             Log.w("InformationActivity", "Cannot read bundled privacy policy", error)
-            heading("您的数据与隐私", "隐私政策")
-            card("暂时无法显示", "本地隐私政策暂时无法读取。您可以查看官网最新政策，或更新应用后重试。", "privacy-unavailable")
-            link("查看官网隐私政策", "https://fish.zfdang.com/privacy.html")
+            heading(getString(R.string.privacy_heading), getString(R.string.privacy_heading_sub))
+            card(getString(R.string.privacy_unavailable_title), getString(R.string.privacy_unavailable_body), "privacy-unavailable")
+            link(getString(R.string.link_privacy_web), "https://fish.zfdang.com/privacy.html")
             return
         }
-        val updated = Regex("更新日期[：:]\\s*([^<]+)").find(html)?.groupValues?.get(1)?.trim().orEmpty()
-        val date = if (updated.isNotEmpty()) " · 更新于 $updated" else ""
-        heading("您的数据与隐私", "隐私政策$date\n此页面可离线阅读。")
+        val updated = Regex("(?:更新日期|Ngày cập nhật)[：:\\s]+([^<]+)", RegexOption.IGNORE_CASE)
+            .find(html)?.groupValues?.get(1)?.trim().orEmpty()
+        val date = if (updated.isNotEmpty()) getString(R.string.privacy_updated_suffix, updated) else ""
+        heading(getString(R.string.privacy_heading), getString(R.string.privacy_heading_offline, date))
         val article = Regex("<section\\b[^>]*>(.*?)</section>", setOf(RegexOption.DOT_MATCHES_ALL, RegexOption.IGNORE_CASE))
             .find(html)?.groupValues?.get(1) ?: html
         val titles = Regex("<h4\\b[^>]*>(.*?)</h4>", setOf(RegexOption.DOT_MATCHES_ALL, RegexOption.IGNORE_CASE)).findAll(article).toList()
         if (titles.isEmpty()) {
-            card("政策正文", HtmlCompat.fromHtml(article, HtmlCompat.FROM_HTML_MODE_LEGACY).trim(), "privacy-full")
+            card(getString(R.string.privacy_full_title), HtmlCompat.fromHtml(article, HtmlCompat.FROM_HTML_MODE_LEGACY).trim(), "privacy-full")
             return
         }
         titles.forEachIndexed { index, match ->
@@ -184,6 +190,10 @@ class InformationActivity : AppCompatActivity() {
             card(HtmlCompat.fromHtml(match.groupValues[1], HtmlCompat.FROM_HTML_MODE_LEGACY).toString(),
                 HtmlCompat.fromHtml(body, HtmlCompat.FROM_HTML_MODE_LEGACY).trim(), "privacy-$index")
         }
+    }
+    private fun privacyAssetName(): String {
+        val language = resources.configuration.locales[0].language
+        return if (language.startsWith("zh")) "documents/privacy.html" else "documents/privacy-vi.html"
     }
     companion object {
         const val EXTRA_PAGE = "page"

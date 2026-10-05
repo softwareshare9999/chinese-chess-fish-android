@@ -1,7 +1,14 @@
 LOCAL_PATH := $(call my-dir)
-# Recurse instead of a fixed-depth wildcard: upstream adds deeper .cpp files over time, and a
-# fixed-depth glob would silently drop them and fail at link time.
-PIKAFISH_SOURCES := $(filter-out src/main.cpp src/universal/%, $(patsubst $(LOCAL_PATH)/%,%, $(shell find $(LOCAL_PATH)/src -name '*.cpp' -type f)))
+# Use GNU make wildcards instead of `find`. On Windows, find.exe searches file
+# contents, so $(shell find ...) yields an empty source list and linking fails
+# with undefined Stockfish symbols. Four directory levels cover the current
+# Pikafish tree (src, nnue, nnue/features, external/common, external/decompress).
+PIKAFISH_CPP := \
+    $(wildcard $(LOCAL_PATH)/src/*.cpp) \
+    $(wildcard $(LOCAL_PATH)/src/*/*.cpp) \
+    $(wildcard $(LOCAL_PATH)/src/*/*/*.cpp) \
+    $(wildcard $(LOCAL_PATH)/src/*/*/*/*.cpp)
+PIKAFISH_SOURCES := $(filter-out src/main.cpp src/universal/%, $(patsubst $(LOCAL_PATH)/%,%, $(PIKAFISH_CPP)))
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := pikafish

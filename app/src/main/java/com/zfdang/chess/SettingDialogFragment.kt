@@ -43,9 +43,9 @@ class SettingDialogFragment : DialogFragment() {
         val engineInfoTV = view.findViewById<TextView>(R.id.textView_engine_info)
         // limit the length of engineInfo
         if (engineInfo.length > 22) {
-            engineInfoTV.text = "引擎: " + engineInfo.substring(0, 22) + ".."
+            engineInfoTV.text = getString(R.string.settings_engine_prefix, engineInfo.substring(0, 22) + "..")
         } else {
-            engineInfoTV.text = "引擎: " + engineInfo
+            engineInfoTV.text = getString(R.string.settings_engine_prefix, engineInfo)
         }
 
         val booleanOpenbook = view.findViewById<CompoundButton>(R.id.boolean_openbook)
@@ -153,8 +153,8 @@ class SettingDialogFragment : DialogFragment() {
 
 
         builder.setView(view)
-            .setTitle("对弈设置")
-            .setPositiveButton("保存设置") { dialog, id ->
+            .setTitle(R.string.settings_title)
+            .setPositiveButton(R.string.settings_save) { dialog, id ->
                 settings.openbook = booleanOpenbook.isChecked
                 settings.sound_effect = booleanSound.isChecked
                 settings.history_moves = historyInput.progress
@@ -170,7 +170,7 @@ class SettingDialogFragment : DialogFragment() {
                 controller.applyEngineSetting()
                 listener?.onDialogPositiveClick()
             }
-            .setNegativeButton("取消") { dialog, id ->
+            .setNegativeButton(R.string.settings_cancel) { dialog, id ->
                 listener?.onDialogNegativeClick()
                 dialog.cancel()
             }

@@ -55,7 +55,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:contentDescription="Back Button"
+            android:contentDescription="@string/file_picker_go_back"
             android:gravity="start"
             android:src="@drawable/ic_back_file_picker"
             android:textAlignment="textStart" />

@@ -15,7 +15,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="FEN 棋局串"
+        android:hint="@string/fen_dialog_hint"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         app:boxCornerRadiusTopStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"

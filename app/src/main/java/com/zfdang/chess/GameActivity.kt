@@ -71,7 +71,7 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
         binding.morebt.setOnClickListener {
             val expanded = binding.advancedTools.visibility != View.VISIBLE
             binding.advancedTools.visibility = if (expanded) View.VISIBLE else View.GONE
-            binding.morebt.text = if (expanded) "收起引擎与棋局工具  ▴" else "引擎与棋局工具  ▾"
+            binding.morebt.text = getString(if (expanded) R.string.tools_collapse else R.string.tools_expand)
         }
 
         // Size the board for the collapsed page; expanded tools may extend below the fold.
@@ -155,9 +155,9 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
 
         // init status text
         if(controller.isRedTurn){
-            setStatusText("等待红方走棋")
+            setStatusText(getString(R.string.status_wait_red))
         } else if(controller.isBlackTurn) {
-            setStatusText("等待黑方走棋")
+            setStatusText(getString(R.string.status_wait_black))
         }
 
         // receive parameters from intent
@@ -204,7 +204,7 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
 
     private fun updateGameHistory() {
         historyAndTrendAdapter.update()
-        binding.historyTitle.text = if (controller.isShowTrends) "局势评估" else "棋局记录"
+        binding.historyTitle.text = getString(if (controller.isShowTrends) R.string.eval_title else R.string.history_title)
         binding.historyEmpty.visibility =
             if (controller.game.history.isEmpty() && !controller.isShowTrends) View.VISIBLE else View.GONE
         binding.trendchart.visibility = if (controller.isShowTrends) View.VISIBLE else View.GONE
@@ -214,23 +214,23 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
     // create function to set status text
     fun setStatusText(text: String) {
         binding.statustv.text = text
-        binding.opponentLabel.text = if (controller.isComputerPlaying) "你执红 · 电脑执黑" else "红黑双方 · 人工执棋"
+        binding.opponentLabel.text = getString(if (controller.isComputerPlaying) R.string.opponent_computer else R.string.opponent_human)
     }
 
     fun showNewGameConfirmDialog() {
         val builder = MaterialAlertDialogBuilder(this)
             .setBackground(AppCompatResources.getDrawable(this, R.drawable.ui_dialog_background))
-        builder.setTitle("开始新的一局？")
-        builder.setMessage("当前棋局将被替换。准备好了，就重新落子吧。")
+        builder.setTitle(R.string.new_game_title)
+        builder.setMessage(R.string.new_game_message)
 
-        builder.setPositiveButton("开始新局") { dialog, which ->
+        builder.setPositiveButton(R.string.new_game_confirm) { dialog, which ->
             // User clicked Yes button
             controller.startNewGame()
             updateGameHistory()
             if(controller.settings.red_go_first) {
-                setStatusText("新游戏，红方先行")
+                setStatusText(getString(R.string.status_new_game_red))
             } else {
-                setStatusText("新游戏，黑方先行")
+                setStatusText(getString(R.string.status_new_game_black))
             }
             // hide choice buttons
             if(binding.choice1bt.visibility == View.VISIBLE){
@@ -246,7 +246,7 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
             }, 1000)
         }
 
-        builder.setNegativeButton("继续对弈") { dialog, which ->
+        builder.setNegativeButton(R.string.new_game_continue) { dialog, which ->
             // User clicked No button
             dialog.dismiss()
         }
@@ -268,8 +268,8 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
     fun showInputFENDialog() {
         val builder = MaterialAlertDialogBuilder(this)
             .setBackground(AppCompatResources.getDrawable(this, R.drawable.ui_dialog_background))
-        builder.setTitle("导入棋局")
-        builder.setMessage("粘贴 FEN 棋局串，从这个局面开始对弈。")
+        builder.setTitle(R.string.fen_dialog_title)
+        builder.setMessage(R.string.fen_dialog_message)
 
         // Set up the input
         val inputView = layoutInflater.inflate(R.layout.dialog_fen, null)
@@ -288,12 +288,12 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
         builder.setView(inputView)
 
         // Set up the buttons
-        builder.setPositiveButton("导入棋局", DialogInterface.OnClickListener { dialog, which ->
+        builder.setPositiveButton(R.string.fen_dialog_import, DialogInterface.OnClickListener { dialog, which ->
             val userInput = input.text.toString()
             controller.startFENGame(userInput)
             // Handle the input string here
         })
-        builder.setNegativeButton("取消", DialogInterface.OnClickListener { dialog, which ->
+        builder.setNegativeButton(R.string.dialog_cancel, DialogInterface.OnClickListener { dialog, which ->
             dialog.cancel()
         })
 
@@ -307,10 +307,10 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
                 controller.toggleComputer()
                 if(controller.isComputerPlaying){
                     binding.playerbt.setImageResource(R.drawable.computer)
-                    setStatusText("切换为电脑执黑棋")
+                    setStatusText(getString(R.string.status_computer_black))
                 } else {
                     binding.playerbt.setImageResource(R.drawable.person)
-                    setStatusText("切换为人工执黑棋")
+                    setStatusText(getString(R.string.status_human_black))
                 }
             }
             binding.playerbackbt -> {
@@ -323,7 +323,7 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
                 controller.toggleComputerAutoPlay()
                 if(controller.isAutoPlay){
                     binding.autoplaybt.setImageResource(R.drawable.play_circle)
-                    setStatusText("开启自动走棋")
+                    setStatusText(getString(R.string.status_auto_on))
 
                     if(controller.isBlackTurn() && controller.isComputerPlaying){
                         // 如果电脑执黑，自动走棋
@@ -331,7 +331,7 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
                     }
                 } else {
                     binding.autoplaybt.setImageResource(R.drawable.pause_circle)
-                    setStatusText("暂停自动走棋")
+                    setStatusText(getString(R.string.status_auto_off))
                 }
             }
             binding.quickbt -> {
@@ -364,11 +364,11 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
                 val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
                 val clip = android.content.ClipData.newPlainText("FEN", fenString)
                 clipboard.setPrimaryClip(clip)
-                setStatusText("FEN串已复制到剪贴板")
+                setStatusText(getString(R.string.status_fen_copied))
                 Log.d("GameActivity", "fenString: $fenString")
             }
             binding.helpbt -> {
-                setStatusText("正在搜索建议着法...")
+                setStatusText(getString(R.string.status_searching_hints))
                 controller.playerAskForHelp();
             }
             binding.stophelpbt -> {
@@ -381,11 +381,11 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
                 binding.trendsbt.setImageResource(imageResource)
 
                 if(controller.isShowTrends){
-                    setStatusText("显示评估趋势图")
+                    setStatusText(getString(R.string.status_show_eval_chart))
                     binding.trendchart.visibility = View.VISIBLE
                     binding.historyscroll.visibility = View.GONE
                 } else {
-                    setStatusText("显示走法历史")
+                    setStatusText(getString(R.string.status_show_move_history))
                     binding.trendchart.visibility = View.GONE
                     binding.historyscroll.visibility = View.VISIBLE
                 }
@@ -396,21 +396,21 @@ class GameActivity() : AppCompatActivity(), View.OnTouchListener, ControllerList
                 saveThenExit();
             }
             binding.choice1bt -> {
-                setStatusText("选择着数1")
+                setStatusText(getString(R.string.status_select_move, 1))
                 binding.choice1bt.visibility = View.GONE;
                 binding.choice2bt.visibility = View.GONE;
                 binding.choice3bt.visibility = View.GONE;
                 controller.selectMultiPV(0)
             }
             binding.choice2bt -> {
-                setStatusText("选择着数2")
+                setStatusText(getString(R.string.status_select_move, 2))
                 binding.choice1bt.visibility = View.GONE;
                 binding.choice2bt.visibility = View.GONE;
                 binding.choice3bt.visibility = View.GONE;
                 controller.selectMultiPV(1)
             }
             binding.choice3bt -> {
-                setStatusText("选择着数3")
+                setStatusText(getString(R.string.status_select_move, 3))
                 binding.choice1bt.visibility = View.GONE;
                 binding.choice2bt.visibility = View.GONE;
                 binding.choice3bt.visibility = View.GONE;

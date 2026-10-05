@@ -33,7 +33,7 @@ class HistoryAndTrendAdapter(private val context: Context, private val tableLayo
             entries.add(Entry(controller.game.history.size.toFloat(), controller.game.currentBoard.score));
         }
 
-        val dataSet = LineDataSet(entries, "红方局势评估"); // add entries to dataset
+        val dataSet = LineDataSet(entries, context.getString(R.string.chart_red_eval)); // add entries to dataset
         dataSet.setColor(Color.RED);
         dataSet.setCircleColors(Color.RED);
         dataSet.setDrawFilled(true);

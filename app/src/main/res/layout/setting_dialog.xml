@@ -15,14 +15,14 @@
             android:id="@+id/textView_engine_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="引擎"
+            android:text="@string/settings_engine"
             android:textSize="12sp"
             android:textColor="@color/ui_muted"
             android:layout_marginBottom="4dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="对弈偏好"
+            android:text="@string/settings_prefs"
             android:textSize="13sp"
             android:textColor="@color/ui_ink"
             android:textStyle="bold"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:text="使用开局库"
+            android:text="@string/settings_openbook"
             android:textSize="14sp"
             android:textColor="@color/ui_ink"
             app:useMaterialThemeColors="false"
@@ -43,7 +43,7 @@
             android:id="@+id/textViewOpenBook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="当前开局库"
+            android:text="@string/settings_current_openbook"
             android:textSize="12sp"
             android:textColor="@color/ui_muted"
             android:paddingStart="4dp" />
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:text="棋子音效"
+            android:text="@string/settings_sound"
             android:textSize="14sp"
             android:textColor="@color/ui_ink"
             app:useMaterialThemeColors="false"
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:text="红方先行 · 下局生效"
+            android:text="@string/settings_red_first"
             android:textSize="14sp"
             android:textColor="@color/ui_ink"
             app:useMaterialThemeColors="false"
@@ -74,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:text="让电脑走法更有变化"
+            android:text="@string/settings_random_move"
             android:textSize="14sp"
             android:textColor="@color/ui_ink"
             app:useMaterialThemeColors="false"
@@ -83,7 +83,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="棋盘显示"
+            android:text="@string/settings_board"
             android:textSize="13sp"
             android:textColor="@color/ui_ink"
             android:textStyle="bold"
@@ -100,7 +100,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="显示最近几步走法"
+                android:text="@string/settings_history_moves"
                 android:textSize="14sp"
                 android:textColor="@color/ui_ink" />
             <TextView
@@ -124,7 +124,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="引擎搜索"
+            android:text="@string/settings_engine_search"
             android:textSize="13sp"
             android:textColor="@color/ui_ink"
             android:textStyle="bold"
@@ -141,7 +141,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="引擎缓存 · MB"
+                android:text="@string/settings_hash"
                 android:textSize="14sp"
                 android:textColor="@color/ui_ink" />
             <TextView
@@ -170,7 +170,7 @@
                 android:id="@+id/radioButton_depth"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="按深度搜索"
+                android:text="@string/settings_search_depth"
                 android:textSize="14sp"
                 android:textColor="@color/ui_ink"
                 android:buttonTint="@color/ui_red" />
@@ -185,7 +185,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="搜索深度"
+                    android:text="@string/settings_depth_value"
                     android:textSize="14sp"
                     android:textColor="@color/ui_ink" />
                 <TextView
@@ -210,7 +210,7 @@
                 android:id="@+id/radioButton_time"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="按时间搜索"
+                android:text="@string/settings_search_time"
                 android:textSize="14sp"
                 android:textColor="@color/ui_ink"
                 android:buttonTint="@color/ui_red" />
@@ -225,7 +225,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="思考时间 · 毫秒"
+                    android:text="@string/settings_time_value"
                     android:textSize="14sp"
                     android:textColor="@color/ui_ink" />
                 <TextView
@@ -250,7 +250,7 @@
                 android:id="@+id/radioButton_infinite"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="持续思考 · 手动停止"
+                android:text="@string/settings_infinite"
                 android:textSize="14sp"
                 android:textColor="@color/ui_ink"
                 android:buttonTint="@color/ui_red" />

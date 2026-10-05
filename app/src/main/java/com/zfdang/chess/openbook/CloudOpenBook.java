@@ -1,6 +1,8 @@
 package com.zfdang.chess.openbook;
 
 
+import com.zfdang.chess.ChessApp;
+import com.zfdang.chess.R;
 import com.zfdang.chess.utils.HttpUtils;
 import com.zfdang.chess.utils.StringUtils;
 
@@ -33,7 +35,7 @@ public class CloudOpenBook extends OpenBookBase {
                 for (String data : datas) {
 
                     BookData bd = new BookData();
-                    bd.setSource("云库");
+                    bd.setSource(ChessApp.getContext() != null ? ChessApp.str(R.string.openbook_cloud) : "云库");
                     String[] items = data.split(",");
                     boolean finalPhase = false;
                     for (String item : items) {

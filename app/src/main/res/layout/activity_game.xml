@@ -21,8 +21,8 @@
             <ImageButton
                 android:id="@+id/exitbt"
                 style="@style/Widget.Chess.Action"
-                android:contentDescription="保存并返回"
-                android:tooltipText="保存并返回"
+                android:contentDescription="@string/cd_save_and_back"
+                android:tooltipText="@string/cd_save_and_back"
                 app:srcCompat="@drawable/arrow_back" />
             <LinearLayout
                 android:layout_width="0dp"
@@ -32,7 +32,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="对弈"
+                    android:text="@string/game_title"
                     android:textSize="20sp"
                     android:textColor="@color/ui_ink"
                     android:textStyle="bold" />
@@ -40,15 +40,15 @@
                     android:id="@+id/opponent_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="你执红 · 电脑执黑"
+                    android:text="@string/opponent_computer"
                     android:textSize="11sp"
                     android:textColor="@color/ui_muted" />
             </LinearLayout>
             <ImageButton
                 android:id="@+id/optionbt"
                 style="@style/Widget.Chess.Action"
-                android:contentDescription="对弈设置"
-                android:tooltipText="对弈设置"
+                android:contentDescription="@string/cd_settings"
+                android:tooltipText="@string/cd_settings"
                 app:srcCompat="@drawable/tune" />
         </LinearLayout>
         <com.zfdang.chess.views.FittedChessLayout
@@ -70,7 +70,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="等待红方走棋"
+                android:text="@string/status_wait_red"
                 android:textColor="@color/ui_red"
                 android:textSize="13sp"
                 android:maxLines="2"
@@ -79,22 +79,22 @@
                 android:id="@+id/choice1bt"
                 android:visibility="gone"
                 style="@style/Widget.Chess.Action"
-                android:contentDescription="选择第1个建议"
-                android:tooltipText="选择第1个建议"
+                android:contentDescription="@string/cd_choice_1"
+                android:tooltipText="@string/cd_choice_1"
                 app:srcCompat="@drawable/looks_1" />
             <ImageButton
                 android:id="@+id/choice2bt"
                 android:visibility="gone"
                 style="@style/Widget.Chess.Action"
-                android:contentDescription="选择第2个建议"
-                android:tooltipText="选择第2个建议"
+                android:contentDescription="@string/cd_choice_2"
+                android:tooltipText="@string/cd_choice_2"
                 app:srcCompat="@drawable/looks_2" />
             <ImageButton
                 android:id="@+id/choice3bt"
                 android:visibility="gone"
                 style="@style/Widget.Chess.Action"
-                android:contentDescription="选择第3个建议"
-                android:tooltipText="选择第3个建议"
+                android:contentDescription="@string/cd_choice_3"
+                android:tooltipText="@string/cd_choice_3"
                 app:srcCompat="@drawable/looks_3" />
         </LinearLayout>
         <LinearLayout
@@ -111,13 +111,13 @@
                 <ImageButton
                     android:id="@+id/newbt"
                     style="@style/Widget.Chess.Action"
-                    android:contentDescription="新局"
-                    android:tooltipText="新局"
+                    android:contentDescription="@string/action_new_game"
+                    android:tooltipText="@string/action_new_game"
                     app:srcCompat="@drawable/new_window" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="新局"
+                    android:text="@string/action_new_game"
                     android:textSize="11sp"
                     android:textColor="@color/ui_muted"
                     android:gravity="center" />
@@ -131,13 +131,13 @@
                 <ImageButton
                     android:id="@+id/backbt"
                     style="@style/Widget.Chess.Action"
-                    android:contentDescription="悔棋"
-                    android:tooltipText="悔棋"
+                    android:contentDescription="@string/action_undo"
+                    android:tooltipText="@string/action_undo"
                     app:srcCompat="@drawable/arrow_back" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="悔棋"
+                    android:text="@string/action_undo"
                     android:textSize="11sp"
                     android:textColor="@color/ui_muted"
                     android:gravity="center" />
@@ -151,13 +151,13 @@
                 <ImageButton
                     android:id="@+id/helpbt"
                     style="@style/Widget.Chess.Action"
-                    android:contentDescription="提示"
-                    android:tooltipText="提示"
+                    android:contentDescription="@string/action_hint"
+                    android:tooltipText="@string/action_hint"
                     app:srcCompat="@drawable/help" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="提示"
+                    android:text="@string/action_hint"
                     android:textSize="11sp"
                     android:textColor="@color/ui_muted"
                     android:gravity="center" />
@@ -171,13 +171,13 @@
                 <ImageButton
                     android:id="@+id/trendsbt"
                     style="@style/Widget.Chess.Action"
-                    android:contentDescription="走势"
-                    android:tooltipText="走势"
+                    android:contentDescription="@string/action_trend"
+                    android:tooltipText="@string/action_trend"
                     app:srcCompat="@drawable/history" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="走势"
+                    android:text="@string/action_trend"
                     android:textSize="11sp"
                     android:textColor="@color/ui_muted"
                     android:gravity="center" />
@@ -187,7 +187,7 @@
             android:id="@+id/morebt"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="引擎与棋局工具  ▾"
+            android:text="@string/tools_expand"
             android:textColor="@color/ui_muted"
             app:backgroundTint="@android:color/transparent"
             app:strokeWidth="0dp" />
@@ -212,13 +212,13 @@
                     <ImageButton
                         android:id="@+id/playerbt"
                         style="@style/Widget.Chess.Action"
-                        android:contentDescription="执棋模式"
-                        android:tooltipText="执棋模式"
+                        android:contentDescription="@string/action_play_mode"
+                        android:tooltipText="@string/action_play_mode"
                         app:srcCompat="@drawable/computer" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="执棋模式"
+                        android:text="@string/action_play_mode"
                         android:textSize="11sp"
                         android:textColor="@color/ui_muted"
                         android:gravity="center" />
@@ -232,13 +232,13 @@
                     <ImageButton
                         android:id="@+id/playerbackbt"
                         style="@style/Widget.Chess.Action"
-                        android:contentDescription="退一步"
-                        android:tooltipText="退一步"
+                        android:contentDescription="@string/action_step_back"
+                        android:tooltipText="@string/action_step_back"
                         app:srcCompat="@drawable/arrow_back" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="退一步"
+                        android:text="@string/action_step_back"
                         android:textSize="11sp"
                         android:textColor="@color/ui_muted"
                         android:gravity="center" />
@@ -252,13 +252,13 @@
                     <ImageButton
                         android:id="@+id/playerforwardbt"
                         style="@style/Widget.Chess.Action"
-                        android:contentDescription="电脑走棋"
-                        android:tooltipText="电脑走棋"
+                        android:contentDescription="@string/action_computer_move"
+                        android:tooltipText="@string/action_computer_move"
                         app:srcCompat="@drawable/arrow_forward" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="电脑走棋"
+                        android:text="@string/action_computer_move"
                         android:textSize="11sp"
                         android:textColor="@color/ui_muted"
                         android:gravity="center" />
@@ -272,13 +272,13 @@
                     <ImageButton
                         android:id="@+id/autoplaybt"
                         style="@style/Widget.Chess.Action"
-                        android:contentDescription="自动走棋"
-                        android:tooltipText="自动走棋"
+                        android:contentDescription="@string/action_auto_play"
+                        android:tooltipText="@string/action_auto_play"
                         app:srcCompat="@drawable/play_circle" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="自动走棋"
+                        android:text="@string/action_auto_play"
                         android:textSize="11sp"
                         android:textColor="@color/ui_muted"
                         android:gravity="center" />
@@ -297,13 +297,13 @@
                     <ImageButton
                         android:id="@+id/playeraltbt"
                         style="@style/Widget.Chess.Action"
-                        android:contentDescription="候选着法"
-                        android:tooltipText="候选着法"
+                        android:contentDescription="@string/action_alt_moves"
+                        android:tooltipText="@string/action_alt_moves"
                         app:srcCompat="@drawable/alt_route" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="候选着法"
+                        android:text="@string/action_alt_moves"
                         android:textSize="11sp"
                         android:textColor="@color/ui_muted"
                         android:gravity="center" />
@@ -317,13 +317,13 @@
                     <ImageButton
                         android:id="@+id/quickbt"
                         style="@style/Widget.Chess.Action"
-                        android:contentDescription="立即落子"
-                        android:tooltipText="立即落子"
+                        android:contentDescription="@string/action_move_now"
+                        android:tooltipText="@string/action_move_now"
                         app:srcCompat="@drawable/quick" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="立即落子"
+                        android:text="@string/action_move_now"
                         android:textSize="11sp"
                         android:textColor="@color/ui_muted"
                         android:gravity="center" />
@@ -337,13 +337,13 @@
                     <ImageButton
                         android:id="@+id/importbt"
                         style="@style/Widget.Chess.Action"
-                        android:contentDescription="导入棋局"
-                        android:tooltipText="导入棋局"
+                        android:contentDescription="@string/action_import_fen"
+                        android:tooltipText="@string/action_import_fen"
                         app:srcCompat="@drawable/import_fen" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="导入棋局"
+                        android:text="@string/action_import_fen"
                         android:textSize="11sp"
                         android:textColor="@color/ui_muted"
                         android:gravity="center" />
@@ -357,13 +357,13 @@
                     <ImageButton
                         android:id="@+id/exportbt"
                         style="@style/Widget.Chess.Action"
-                        android:contentDescription="复制棋局"
-                        android:tooltipText="复制棋局"
+                        android:contentDescription="@string/action_export_fen"
+                        android:tooltipText="@string/action_export_fen"
                         app:srcCompat="@drawable/export" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="复制棋局"
+                        android:text="@string/action_export_fen"
                         android:textSize="11sp"
                         android:textColor="@color/ui_muted"
                         android:gravity="center" />
@@ -377,13 +377,13 @@
                     <ImageButton
                         android:id="@+id/stophelpbt"
                         style="@style/Widget.Chess.Action"
-                        android:contentDescription="停止提示"
-                        android:tooltipText="停止提示"
+                        android:contentDescription="@string/action_stop_hint"
+                        android:tooltipText="@string/action_stop_hint"
                         app:srcCompat="@drawable/quick" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="停止提示"
+                        android:text="@string/action_stop_hint"
                         android:textSize="11sp"
                         android:textColor="@color/ui_muted"
                         android:gravity="center" />
@@ -401,7 +401,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/history_title"
-                android:text="棋局记录"
+                android:text="@string/history_title"
                 android:textSize="14sp"
                 android:textColor="@color/ui_ink"
                 android:textStyle="bold"
@@ -430,7 +430,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="棋局尚未落子\n走过的每一步，都会记录在这里"
+                    android:text="@string/history_empty"
                     android:textSize="13sp"
                     android:lineSpacingExtra="8dp"
                     android:textColor="@color/ui_muted" />

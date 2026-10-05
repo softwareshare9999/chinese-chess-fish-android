@@ -142,6 +142,7 @@ dependencies {
 // Keep the offline native privacy page and the published website on one source document.
 val stageInformationAssets by tasks.registering(Copy::class) {
     from(rootProject.file("docs/privacy.html"))
+    from(rootProject.file("docs/privacy-vi.html"))
     into(layout.buildDirectory.dir("generated/informationAssets/documents"))
 }
 android.sourceSets.getByName("main").assets.srcDir(layout.buildDirectory.dir("generated/informationAssets"))

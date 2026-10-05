@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="file_picker_go_back">Quay lại</string>
+    <string name="file_picker_selected_count">Đã chọn·%1$d</string>
+    <string name="file_picker_request_permission_failed">Chưa cấp quyền lưu trữ</string>
+    <string name="file_picker_tv_select_all">Chọn tất cả</string>
+    <string name="file_picker_tv_deselect_all">Hủy</string>
+    <string name="file_picker_tv_select_done">Xong</string>
+    <string name="file_picker_tv_sd_card">Kỳ phổ</string>
+    <string name="too_many_files_tips">Quá nhiều tệp, đang tải…</string>
+    <string name="max_select_count_tips">Chỉ có thể chọn %d mục.</string>
+    <string name="empty_list_tips_file_picker">Không có gì ở đây~</string>
+    <string name="custom_file_type">Loại tệp tùy chỉnh</string>
+</resources>

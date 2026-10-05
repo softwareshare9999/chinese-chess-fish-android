@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.zfdang.chess.ChessApp;
+import com.zfdang.chess.R;
 import com.zfdang.chess.gamelogic.Board;
 import com.zfdang.chess.gamelogic.GameStatus;
 import com.zfdang.chess.gamelogic.Move;
@@ -46,7 +47,7 @@ public class ManualController extends GameController{
                 manual = XQFParser.parse(buffer);
                 if(manual == null) {
                     Log.e("ManualActivity", "Failed to parse XQF game: " + filename);
-                    gui.onGameEvent(GameStatus.ILLEGAL, "Failed to parse XQF game: " + filename);
+                    gui.onGameEvent(GameStatus.ILLEGAL, ChessApp.str(R.string.msg_parse_xqf_failed, filename));
                     return false;
                 }
 
@@ -90,12 +91,12 @@ public class ManualController extends GameController{
 
     public void manualForward() {
         if(manual == null) {
-            gui.onGameEvent(GameStatus.ILLEGAL, "未打开棋谱...");
+            gui.onGameEvent(GameStatus.ILLEGAL, ChessApp.str(R.string.msg_manual_not_open));
             return;
         }
 
         if(moveNode == null) {
-            gui.onGameEvent(GameStatus.ILLEGAL, "状态异常");
+            gui.onGameEvent(GameStatus.ILLEGAL, ChessApp.str(R.string.msg_abnormal_state));
             return;
         }
 
@@ -124,27 +125,27 @@ public class ManualController extends GameController{
             }
             suggestedPVs = java.util.Collections.unmodifiableList(choices);
             game.generateSuggestedMoves(suggestedPVs);
-            gui.onGameEvent(GameStatus.MULTIPV, "请选择分支: ");
+            gui.onGameEvent(GameStatus.MULTIPV, ChessApp.str(R.string.msg_choose_branch));
             Log.d("ManualController", "multiPVs: " + suggestedPVs.size());
         } else{
-            gui.onGameEvent(GameStatus.ILLEGAL, "没有下一步了");
+            gui.onGameEvent(GameStatus.ILLEGAL, ChessApp.str(R.string.msg_no_next_move));
         }
 
     }
 
     public void manualBack() {
         if(manual == null) {
-            gui.onGameEvent(GameStatus.ILLEGAL, "未打开棋谱...");
+            gui.onGameEvent(GameStatus.ILLEGAL, ChessApp.str(R.string.msg_manual_not_open));
             return;
         }
 
         if(moveNode == null) {
-            gui.onGameEvent(GameStatus.ILLEGAL, "状态异常");
+            gui.onGameEvent(GameStatus.ILLEGAL, ChessApp.str(R.string.msg_abnormal_state));
             return;
         }
 
         if(moveNode.parent == null) {
-            String hint = "已经到达开局" + "," + getFirstMoveColor();
+            String hint = ChessApp.str(R.string.msg_at_start, getFirstMoveColor());
             game.clearSuggestedMoves();
             gui.onGameEvent(GameStatus.MOVE, hint);
             return;
@@ -153,24 +154,24 @@ public class ManualController extends GameController{
         moveNode = moveNode.parent;
         game.undoMove();
         toggleTurn();
-        gui.onGameEvent(GameStatus.MOVE, "回到上一步");
+        gui.onGameEvent(GameStatus.MOVE, ChessApp.str(R.string.msg_back_one_move));
     }
 
     public String getFirstMoveColor(){
         if(manual == null) {
-            return "未打开棋谱...";
+            return ChessApp.str(R.string.msg_manual_not_open);
         }
 
         if(manual.board.bRedGo) {
-            return "红方先行";
+            return ChessApp.str(R.string.msg_red_first);
         } else {
-            return "黑方先行";
+            return ChessApp.str(R.string.msg_black_first);
         }
     }
 
     public void manualFirst() {
         if(manual == null) {
-            gui.onGameEvent(GameStatus.ILLEGAL, "未打开棋谱...");
+            gui.onGameEvent(GameStatus.ILLEGAL, ChessApp.str(R.string.msg_manual_not_open));
             return;
         }
 
@@ -185,18 +186,18 @@ public class ManualController extends GameController{
 
         setSatate(manual.board.bRedGo);
 
-        String hint = "回到开局" + "," + getFirstMoveColor();
+        String hint = ChessApp.str(R.string.msg_back_to_start, getFirstMoveColor());
         gui.onGameEvent(GameStatus.MOVE, hint);
     }
 
     public void selectBranch(int i) {
         if(manual == null) {
-            gui.onGameEvent(GameStatus.ILLEGAL, "未打开棋谱...");
+            gui.onGameEvent(GameStatus.ILLEGAL, ChessApp.str(R.string.msg_manual_not_open));
             return;
         }
 
         if(moveNode == null) {
-            gui.onGameEvent(GameStatus.ILLEGAL, "状态异常");
+            gui.onGameEvent(GameStatus.ILLEGAL, ChessApp.str(R.string.msg_abnormal_state));
             return;
         }
 
@@ -212,11 +213,11 @@ public class ManualController extends GameController{
                     toggleTurn();
 
                     game.clearSuggestedMoves();
-                    gui.onGameEvent(GameStatus.MOVE, "分支" + (i+1) + ": " + game.getLastMoveDesc());
+                    gui.onGameEvent(GameStatus.MOVE, ChessApp.str(R.string.msg_branch, i+1, game.getLastMoveDesc()));
                 }
             }
         } else {
-            gui.onGameEvent(GameStatus.ILLEGAL, "错误的分支: " + (i+1));
+            gui.onGameEvent(GameStatus.ILLEGAL, ChessApp.str(R.string.msg_invalid_branch, i+1));
         }
     }
 }
