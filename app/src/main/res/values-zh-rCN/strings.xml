@@ -71,6 +71,7 @@
     <string name="settings_save">保存设置</string>
     <string name="settings_cancel">取消</string>
     <string name="openbook_cloud">云库</string>
+    <string name="openbook_bh_name">桔库09.09.2023精修库</string>
 
     <string name="new_game_title">开始新的一局？</string>
     <string name="new_game_message">当前棋局将被替换。准备好了，就重新落子吧。</string>

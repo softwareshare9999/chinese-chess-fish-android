@@ -50,7 +50,7 @@ class SettingDialogFragment : DialogFragment() {
 
         val booleanOpenbook = view.findViewById<CompoundButton>(R.id.boolean_openbook)
         val textviewOpenbook = view.findViewById<TextView>(R.id.textViewOpenBook)
-        textviewOpenbook.text = "(" + BHDatabase.OPENBOOK_NAME + ")"
+        textviewOpenbook.text = "(" + getString(R.string.openbook_bh_name) + ")"
 
         val booleanSound = view.findViewById<CompoundButton>(R.id.boolean_sound)
 

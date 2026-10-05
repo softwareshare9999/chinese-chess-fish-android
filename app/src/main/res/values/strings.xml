@@ -74,6 +74,7 @@
     <string name="settings_save">Lưu cài đặt</string>
     <string name="settings_cancel">Hủy</string>
     <string name="openbook_cloud">Kho mây</string>
+    <string name="openbook_bh_name">Kho Quất 09.09.2023 (bản tinh chỉnh)</string>
 
     <!-- Dialogs -->
     <string name="new_game_title">Bắt đầu ván mới?</string>

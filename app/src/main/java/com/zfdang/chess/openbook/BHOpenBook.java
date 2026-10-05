@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.zfdang.chess.R;
 import com.zfdang.chess.gamelogic.Zobrist;
 
 import java.sql.*;
@@ -26,7 +27,7 @@ public class BHOpenBook extends OpenBookBase {
         bhDB = new BHDatabase(context);
         db = bhDB.getReadableDatabase();
 
-        name = bhDB.OPENBOOK_NAME;
+        name = context.getString(R.string.openbook_bh_name);
     }
 
 
