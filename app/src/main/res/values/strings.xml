@@ -140,7 +140,6 @@
 
     <!-- Manual -->
     <string name="manual_empty">Kỳ phổ trống</string>
-    <string name="manual_not_loaded">Chưa tải kỳ phổ</string>
     <string name="manual_init_title">Đang khởi tạo</string>
     <string name="manual_init_message">Lần chạy đầu, đang khởi tạo kỳ phổ. Có thể mất hơn 30 giây, vui lòng đợi…</string>
     <string name="manual_init_done">Khởi tạo xong</string>

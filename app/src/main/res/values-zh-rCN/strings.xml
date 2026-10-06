@@ -133,7 +133,6 @@
     <string name="msg_engine_stopped">引擎已停止，请重新走子或开新局</string>
 
     <string name="manual_empty">空棋谱</string>
-    <string name="manual_not_loaded">未加载棋谱</string>
     <string name="manual_init_title">初始化中</string>
     <string name="manual_init_message">初次运行，正在初始化棋谱，时间较长(&gt;30s)，请耐心等待…</string>
     <string name="manual_init_done">初始化完成</string>

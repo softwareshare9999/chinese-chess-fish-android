@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="manual_return_home">Về trang chủ</string>
+    <string name="manual_title">Xem kỳ phổ</string>
+    <string name="manual_choose">Chọn kỳ phổ</string>
+    <string name="manual_empty_title">Chọn một kỳ phổ để bắt đầu nghiên cứu</string>
+    <string name="manual_red">Bên Đỏ</string>
+    <string name="manual_separator">·</string>
+    <string name="manual_black">Bên Đen</string>
+    <string name="manual_first">Về khai cuộc</string>
+    <string name="manual_previous">Nước trước</string>
+    <string name="manual_next">Nước sau</string>
+    <string name="manual_play_position">Đấu từ thế này</string>
+    <string name="manual_not_loaded">Chưa tải kỳ phổ</string>
+    <string name="manual_opening">Khai cuộc</string>
+    <string name="manual_annotation_title">Lời bình kỳ phổ</string>
+    <string name="manual_empty_instructions">Nhấn «Chọn kỳ phổ» để duyệt thư viện kỳ phổ có sẵn. Sau khi tải, dùng Nước trước / Nước sau để nghiên cứu từng nước; khi có nhánh biến, bạn có thể chọn các nước đi khác nhau.</string>
+    <string name="manual_return_manual">Quay lại xem kỳ phổ</string>
+    <string name="manual_picker_subtitle">Kỳ phổ kinh điển, nghiên cứu từng nước</string>
+    <string name="manual_search_hint">Tìm trong thư mục này</string>
+    <string name="manual_search_empty">Không tìm thấy kỳ phổ\nHãy thử từ khóa khác hoặc quay lại thư mục cha</string>
+    <string name="manual_branch_label">%1$d · %2$s</string>
+    <string name="manual_step_label">Nước %1$d</string>
+    <string name="manual_picker_summary">%1$d thư mục · %2$d kỳ phổ · Nhấn vào kỳ phổ để mở</string>
+    <string name="manual_picker_loading">Đang tải kỳ phổ…</string>
+    <string name="manual_picker_unavailable">Thư mục kỳ phổ tạm thời không khả dụng\nHãy quay lại trang xem kỳ phổ và đợi khởi tạo xong rồi thử lại</string>
+    <string name="manual_library">Tất cả kỳ phổ</string>
+    <string name="manual_empty_folder">Thư mục này chưa có kỳ phổ</string>
+    <string name="manual_file_hint">Kỳ phổ XQF · Nhấn để mở</string>
+    <string name="manual_folder_hint">Thư mục · Nhấn để duyệt</string>
+    <string name="manual_no_comment">Nước này chưa có lời bình, hãy tiếp tục xem các nước sau.</string>
+    <string name="manual_red_unknown">Bên Đỏ không rõ tên</string>
+    <string name="manual_black_unknown">Bên Đen không rõ tên</string>
+    <string name="manual_initializing_title">Đang khởi tạo</string>
+    <string name="manual_initializing_message">Đang chuẩn bị thư viện kỳ phổ có sẵn, xong là có thể duyệt và nghiên cứu. Vui lòng đợi…</string>
+    <string name="manual_initializing_done">Khởi tạo xong</string>
+    <string name="manual_initializing_failed">Khởi tạo kỳ phổ thất bại</string>
+    <string name="manual_initializing_retry_message">Chưa chuẩn bị xong kỳ phổ, vui lòng kiểm tra dung lượng trống rồi thử lại.</string>
+    <string name="manual_retry">Thử lại</string>
+    <string name="manual_load_failed">Tải kỳ phổ thất bại</string>
+    <string name="manual_load_failed_note">Không đọc được kỳ phổ này, vui lòng chọn kỳ phổ khác.</string>
+</resources>
